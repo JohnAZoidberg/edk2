@@ -1,4 +1,5 @@
 /** @file
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Provides 'initrd' dynamic UEFI shell command to load a Linux initrd
   via its GUIDed vendor media path
 

@@ -37,7 +37,7 @@ EFI_LOADED_IMAGE_PROTOCOL          *gDxeCoreLoadedImage;
 
 //
 // DXE Core Module Variables
-//
+//                vvvvvvvvvvvv
 EFI_BOOT_SERVICES mBootServices = {
   {
     EFI_BOOT_SERVICES_SIGNATURE,                                                          // Signature
@@ -92,6 +92,7 @@ EFI_BOOT_SERVICES mBootServices = {
   (EFI_CREATE_EVENT_EX)                         CoreCreateEventEx                         // CreateEventEx
 };
 
+//               vvvvvvvvvvvv
 EFI_DXE_SERVICES mDxeServices = {
   {
     DXE_SERVICES_SIGNATURE,                                           // Signature
@@ -221,6 +222,7 @@ GLOBAL_REMOVE_IF_UNREFERENCED EFI_LOAD_FIXED_ADDRESS_CONFIGURATION_TABLE    gLoa
 //
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Main entry point to DXE Core.
 
   @param  HobStart               Pointer to the beginning of the HOB List from PEI.
@@ -722,6 +724,7 @@ CalculateEfiHdrCrc (
 
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Terminates all boot services.
 
   @param  ImageHandle            Handle that identifies the exiting image.

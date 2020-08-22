@@ -1,4 +1,5 @@
 /** @file
+                       vvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   This file implements Runtime Architectural Protocol as defined in the
   Platform Initialization specification 1.0 VOLUME 2 DXE Core Interface.
 
@@ -406,6 +407,7 @@ RuntimeDriverInitialize (
   // Fill in the entries of the EFI Boot Services and EFI Runtime Services Tables
   //
   gBS->CalculateCrc32       = RuntimeDriverCalculateCrc32;
+  // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   gRT->SetVirtualAddressMap = RuntimeDriverSetVirtualAddressMap;
   gRT->ConvertPointer       = RuntimeDriverConvertPointer;
 

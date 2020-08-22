@@ -154,6 +154,7 @@ InitializePcRtc (
                   );
   ASSERT_EFI_ERROR (Status);
 
+  // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   gRT->GetTime       = PcRtcEfiGetTime;
   gRT->SetTime       = PcRtcEfiSetTime;
   gRT->GetWakeupTime = PcRtcEfiGetWakeupTime;

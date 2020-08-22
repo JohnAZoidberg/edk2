@@ -1,4 +1,5 @@
 /** @file
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Implement EFI RealTimeClock runtime services via RTC Lib.
 
   Copyright (c) 2008 - 2009, Apple Inc. All rights reserved.<BR>
@@ -294,6 +295,7 @@ InitializeRealTimeClock (
     mTimeSettings.Daylight = 0;
   }
 
+  // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   SystemTable->RuntimeServices->GetTime       = GetTime;
   SystemTable->RuntimeServices->SetTime       = SetTime;
   SystemTable->RuntimeServices->GetWakeupTime = GetWakeupTime;

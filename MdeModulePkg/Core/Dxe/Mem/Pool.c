@@ -333,6 +333,7 @@ CoreAllocatePoolPagesI (
 }
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Internal function to allocate pool of a particular type.
   Caller must have the memory lock held
 

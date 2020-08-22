@@ -1384,6 +1384,7 @@ EvacuateTempRam (
 }
 
 /**
+  vvvvvvvvvvvvvvvvvvvvv
   Conduct PEIM dispatch.
 
   @param SecCoreData     Points to a data structure containing information about the PEI core's operating
@@ -1724,6 +1725,7 @@ InitializeDispatcherData (
 }
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   This routine parses the Dependency Expression, if available, and
   decides if the module can be executed.
 

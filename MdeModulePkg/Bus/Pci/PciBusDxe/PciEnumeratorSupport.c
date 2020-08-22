@@ -1748,6 +1748,7 @@ PciIovParseVfBar (
 }
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvv
   Parse PCI bar information and fill them into PCI device instance.
 
   @param PciIoDevice  Pci device instance.

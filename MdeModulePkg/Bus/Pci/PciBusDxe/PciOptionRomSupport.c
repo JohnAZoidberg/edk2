@@ -9,6 +9,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include "PciBus.h"
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Load the EFI Image from Option ROM
 
   @param PciIoDevice   PCI IO device instance.
@@ -633,6 +634,7 @@ RomDecode (
 }
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Load and start the Option Rom image.
 
   @param PciDevice       Pci device instance.

@@ -1,4 +1,5 @@
 /** @file
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Contains code that implements the virtual machine.
 
 Copyright (c) 2006 - 2018, Intel Corporation. All rights reserved.<BR>

@@ -616,6 +616,7 @@ SetupLinuxBootParams (
 
 EFI_STATUS
 EFIAPI
+// vvvvvv
 LoadLinux (
   IN VOID      *Kernel,
   IN OUT VOID  *KernelSetup

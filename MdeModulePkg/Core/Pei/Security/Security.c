@@ -84,6 +84,7 @@ SecurityPpiNotifyCallback (
   @retval EFI_NOT_FOUND            If security PPI is not installed.
 **/
 EFI_STATUS
+// vvvvvvv
 VerifyPeim (
   IN PEI_CORE_INSTANCE      *PrivateData,
   IN EFI_PEI_FV_HANDLE      VolumeHandle,
@@ -133,6 +134,7 @@ VerifyPeim (
 
 **/
 EFI_STATUS
+// vvvvv
 VerifyFv (
   IN EFI_FIRMWARE_VOLUME_HEADER  *CurrentFvAddress
   )

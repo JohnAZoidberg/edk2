@@ -14,7 +14,7 @@ EFI_PEI_PPI_DESCRIPTOR mMemoryDiscoveredPpi = {
   NULL
 };
 
-///
+/// vvvvvvvvvvvvvvvvvvvv
 /// Pei service instance
 ///
 EFI_PEI_SERVICES  gPs = {
@@ -159,6 +159,7 @@ ShadowPeiCore (
 **/
 VOID
 EFIAPI
+// vvvv
 PeiCore (
   IN CONST EFI_SEC_PEI_HAND_OFF        *SecCoreDataPtr,
   IN CONST EFI_PEI_PPI_DESCRIPTOR      *PpiList,

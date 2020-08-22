@@ -1,4 +1,5 @@
 /** @file
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   This code produces the Smbios protocol. It also responsible for constructing
   SMBIOS table into system table.
 

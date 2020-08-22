@@ -1,4 +1,5 @@
 /** @file
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Measure TCG required variable.
 
 Copyright (c) 2013 - 2017, Intel Corporation. All rights reserved.<BR>

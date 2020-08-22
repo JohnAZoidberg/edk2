@@ -382,6 +382,7 @@ PciIoPollIo (
 }
 
 /**
+                         vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Enable a PCI driver to access PCI controller registers in the PCI memory or I/O space.
 
   @param  This                  A pointer to the EFI_PCI_IO_PROTOCOL instance.

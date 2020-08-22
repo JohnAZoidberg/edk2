@@ -375,7 +375,7 @@ CapsuleServiceInitialize (
   //
   SaveLongModeContext ();
 
-  //
+  // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   // Install capsule runtime services into UEFI runtime service tables.
   //
   gRT->UpdateCapsule                    = UpdateCapsule;

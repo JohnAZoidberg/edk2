@@ -420,7 +420,7 @@ DumpPpiList (
 }
 
 /**
-
+                vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   This function installs an interface in the PEI PPI database by GUID.
   The purpose of the service is to publish an interface that other parties
   can use to call additional PEIMs.
@@ -559,7 +559,7 @@ PeiInstallPpi (
 }
 
 /**
-
+                vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   This function reinstalls an interface in the PEI PPI database by GUID.
   The purpose of the service is to publish an interface that other parties can
   use to replace an interface of the same name in the protocol database with a
@@ -632,7 +632,7 @@ PeiReInstallPpi (
 }
 
 /**
-
+  vvvvvvvvvvvvvvvvvvvvvvvv
   Locate a given named PPI.
 
 
@@ -703,6 +703,7 @@ PeiLocatePpi (
 
 /**
 
+                vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   This function installs a notification service to be called back when a given
   interface is installed or reinstalled. The purpose of the service is to publish
   an interface that other parties can use to call additional PPIs that may materialize later.

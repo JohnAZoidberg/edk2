@@ -180,6 +180,7 @@ PublishTables (
 
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   Installs an ACPI table into the RSDT/XSDT.
   Note that the ACPI table should be checksumed before installing it.
   Otherwise it will assert.
@@ -429,6 +430,7 @@ ReallocateAcpiTableBuffer (
 }
 
 /**
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   This function adds an ACPI table to the table list.  It will detect FACS and
   allocate the correct type of memory and properly align the table.
 

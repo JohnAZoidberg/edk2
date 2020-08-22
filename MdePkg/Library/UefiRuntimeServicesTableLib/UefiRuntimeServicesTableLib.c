@@ -36,7 +36,7 @@ UefiRuntimeServicesTableLibConstructor (
 {
   //
   // Cache pointer to the EFI Runtime Services Table
-  //
+  // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   gRT = SystemTable->RuntimeServices;
   ASSERT (gRT != NULL);
   return EFI_SUCCESS;

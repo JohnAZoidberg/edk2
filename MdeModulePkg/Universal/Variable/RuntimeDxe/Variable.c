@@ -1,4 +1,5 @@
 /** @file
+      vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   The common variable operation routines shared by DXE_RUNTIME variable
   module and DXE_SMM variable module.
 
