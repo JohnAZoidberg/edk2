@@ -3,7 +3,7 @@
 #  Portions copyright (c) 2008 - 2009, Apple Inc. All rights reserved.<BR>
 #  Portions copyright (c) 2011 - 2019, ARM Ltd. All rights reserved.<BR>
 #  Copyright (c) 2015, Hewlett-Packard Development Company, L.P.<BR>
-#  (C) Copyright 2020, Hewlett Packard Enterprise Development LP<BR>
+#  (C) Copyright 2020-2021, Hewlett Packard Enterprise Development LP<BR>
 #  Copyright (c) Microsoft Corporation
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -422,7 +422,7 @@ DEFINE DTC_BIN                 = ENV(DTC_PREFIX)dtc
 *_VS2008_*_SLINK_FLAGS            = /NOLOGO /LTCG
 *_VS2008_*_APP_FLAGS              = /nologo /E /TC
 *_VS2008_*_PP_FLAGS               = /nologo /E /TC /FIAutoGen.h
-*_VS2008_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2008_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2008_*_DEPS_FLAGS            = DEF(MSFT_DEPS_FLAGS)
 *_VS2008_*_ASM16_PATH             = DEF(VS2008_BIN)\ml.exe
 
@@ -533,7 +533,7 @@ NOOPT_VS2008_X64_DLINK_FLAGS  = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF /OPT
 *_VS2008x86_*_SLINK_FLAGS     = /NOLOGO /LTCG
 *_VS2008x86_*_APP_FLAGS       = /nologo /E /TC
 *_VS2008x86_*_PP_FLAGS        = /nologo /E /TC /FIAutoGen.h
-*_VS2008x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2008x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2008x86_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2008x86_*_ASM16_PATH      = DEF(VS2008x86_BIN)\ml.exe
 
@@ -647,7 +647,7 @@ NOOPT_VS2008x86_X64_DLINK_FLAGS    = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF
 *_VS2010_*_SLINK_FLAGS            = /NOLOGO /LTCG
 *_VS2010_*_APP_FLAGS              = /nologo /E /TC
 *_VS2010_*_PP_FLAGS               = /nologo /E /TC /FIAutoGen.h
-*_VS2010_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2010_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2010_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2010_*_ASM16_PATH             = DEF(VS2010_BIN)\ml.exe
 
@@ -758,7 +758,7 @@ NOOPT_VS2010_X64_DLINK_FLAGS  = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF /OPT
 *_VS2010x86_*_SLINK_FLAGS     = /NOLOGO /LTCG
 *_VS2010x86_*_APP_FLAGS       = /nologo /E /TC
 *_VS2010x86_*_PP_FLAGS        = /nologo /E /TC /FIAutoGen.h
-*_VS2010x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2010x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2010x86_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2010x86_*_ASM16_PATH      = DEF(VS2010x86_BIN)\ml.exe
 
@@ -872,7 +872,7 @@ NOOPT_VS2010x86_X64_DLINK_FLAGS    = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF
 *_VS2012_*_SLINK_FLAGS            = /NOLOGO /LTCG
 *_VS2012_*_APP_FLAGS              = /nologo /E /TC
 *_VS2012_*_PP_FLAGS               = /nologo /E /TC /FIAutoGen.h
-*_VS2012_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2012_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2012_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2012_*_ASM16_PATH             = DEF(VS2012_BIN)\ml.exe
 
@@ -983,7 +983,7 @@ NOOPT_VS2012_X64_DLINK_FLAGS  = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF /OPT
 *_VS2012x86_*_SLINK_FLAGS     = /NOLOGO /LTCG
 *_VS2012x86_*_APP_FLAGS       = /nologo /E /TC
 *_VS2012x86_*_PP_FLAGS        = /nologo /E /TC /FIAutoGen.h
-*_VS2012x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2012x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2012x86_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2012x86_*_ASM16_PATH      = DEF(VS2012x86_BIN)\ml.exe
 
@@ -1097,7 +1097,7 @@ NOOPT_VS2012x86_X64_DLINK_FLAGS    = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF
 *_VS2013_*_SLINK_FLAGS            = /NOLOGO /LTCG
 *_VS2013_*_APP_FLAGS              = /nologo /E /TC
 *_VS2013_*_PP_FLAGS               = /nologo /E /TC /FIAutoGen.h
-*_VS2013_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2013_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2013_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2013_*_ASM16_PATH             = DEF(VS2013_BIN)\ml.exe
 
@@ -1208,7 +1208,7 @@ NOOPT_VS2013_X64_DLINK_FLAGS  = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF /OPT
 *_VS2013x86_*_SLINK_FLAGS     = /NOLOGO /LTCG
 *_VS2013x86_*_APP_FLAGS       = /nologo /E /TC
 *_VS2013x86_*_PP_FLAGS        = /nologo /E /TC /FIAutoGen.h
-*_VS2013x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2013x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2013x86_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2013x86_*_ASM16_PATH      = DEF(VS2013x86_BIN)\ml.exe
 
@@ -1322,7 +1322,7 @@ NOOPT_VS2013x86_X64_DLINK_FLAGS    = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF
 *_VS2015_*_SLINK_FLAGS            = /NOLOGO /LTCG
 *_VS2015_*_APP_FLAGS              = /nologo /E /TC
 *_VS2015_*_PP_FLAGS               = /nologo /E /TC /FIAutoGen.h
-*_VS2015_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2015_*_VFRPP_FLAGS            = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2015_*_DLINK2_FLAGS           =
 *_VS2015_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2015_*_ASM16_PATH             = DEF(VS2015_BIN)\ml.exe
@@ -1434,7 +1434,7 @@ NOOPT_VS2015_X64_DLINK_FLAGS  = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF /OPT
 *_VS2015x86_*_SLINK_FLAGS     = /NOLOGO /LTCG
 *_VS2015x86_*_APP_FLAGS       = /nologo /E /TC
 *_VS2015x86_*_PP_FLAGS        = /nologo /E /TC /FIAutoGen.h
-*_VS2015x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2015x86_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2015x86_*_DLINK2_FLAGS    =
 *_VS2015x86_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
 *_VS2015x86_*_ASM16_PATH      = DEF(VS2015x86_BIN)\ml.exe
@@ -1547,7 +1547,7 @@ NOOPT_VS2015x86_X64_DLINK_FLAGS    = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF
 *_VS2017_*_SLINK_FLAGS     = /NOLOGO /LTCG
 *_VS2017_*_APP_FLAGS       = /nologo /E /TC
 *_VS2017_*_PP_FLAGS        = /nologo /E /TC /FIAutoGen.h
-*_VS2017_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2017_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2017_*_DLINK2_FLAGS    = /WHOLEARCHIVE
 *_VS2017_*_ASM16_PATH      = DEF(VS2017_BIN_IA32)\ml.exe
 *_VS2017_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
@@ -1705,7 +1705,7 @@ NOOPT_VS2017_AARCH64_DLINK_FLAGS   = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /OPT:REF
 *_VS2019_*_SLINK_FLAGS     = /NOLOGO /LTCG
 *_VS2019_*_APP_FLAGS       = /nologo /E /TC
 *_VS2019_*_PP_FLAGS        = /nologo /E /TC /FIAutoGen.h
-*_VS2019_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+*_VS2019_*_VFRPP_FLAGS     = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h /we4668
 *_VS2019_*_DLINK2_FLAGS    = /WHOLEARCHIVE
 *_VS2019_*_ASM16_PATH      = DEF(VS2019_BIN_IA32)\ml.exe
 *_VS2019_*_DEPS_FLAGS      = DEF(MSFT_DEPS_FLAGS)
