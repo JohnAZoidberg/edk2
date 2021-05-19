@@ -73,7 +73,7 @@
 !ifdef $(FD_SIZE_16MB)
   DEFINE FD_SIZE_IN_KB           = 16384
 !else
-  DEFINE FD_SIZE_IN_KB           = 4096
+  DEFINE FD_SIZE_IN_KB           = 16384
 !endif
 !endif
 !endif
