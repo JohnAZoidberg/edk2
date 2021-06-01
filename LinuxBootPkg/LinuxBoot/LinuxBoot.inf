@@ -1,0 +1,60 @@
+## @file
+#  LinuxBoot
+#
+#  Copyright (c) 2021, Hewlett Packard Enterprise Development LP. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = LinuxBoot
+  FILE_GUID                      = 8718bf01-7828-411c-ba00-559ef5562954
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = LinuxBootEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  LinuxBoot.c
+  EfiFv.c
+  EfiFv.h
+  Serial.h
+  EfiDxe.h
+
+#[Binaries.X64]
+#  PE32|linuxboot.efi|*
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec  # For gRootBridgesConnectedEventGroupGuid
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  DxeServicesTableLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+
+[Guids]
+  gEfiEndOfDxeEventGroupGuid
+  gRootBridgesConnectedEventGroupGuid
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gEfiFirmwareVolume2ProtocolGuid   ##
+  gEfiBdsArchProtocolGuid           ##
+  gEfiDxeSmmReadyToLockProtocolGuid ##
+  gEfiPciRootBridgeIoProtocolGuid   ##
+
+[Depex]
+  TRUE
