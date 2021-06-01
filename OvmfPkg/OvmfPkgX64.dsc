@@ -1057,3 +1057,5 @@
       Tpm12DeviceLib|SecurityPkg/Library/Tpm12DeviceLibDTpm/Tpm12DeviceLibDTpm.inf
   }
 !endif
+
+  LinuxBootPkg/LinuxBoot/LinuxBoot.inf

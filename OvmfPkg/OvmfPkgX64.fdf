@@ -313,6 +313,8 @@ INF  OvmfPkg/LinuxInitrdDynamicShellCommand/LinuxInitrdDynamicShellCommand.inf
 !endif
 INF  ShellPkg/Application/Shell/Shell.inf
 
+INF  LinuxBootPkg/LinuxBoot/LinuxBoot.inf
+
 INF MdeModulePkg/Logo/LogoDxe.inf
 
 #
