@@ -292,6 +292,7 @@ BuildHobFromBl (
   //
   // Parse platform specific information.
   //
+  DEBUG ((DEBUG_INFO, "zoid: ParsePlatformInfo\n"));
   Status = ParsePlatformInfo ();
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "Error when parsing platform info, Status = %r\n", Status));
@@ -392,9 +393,11 @@ PayloadEntry (
   }
 
   // Build other HOBs required by DXE
+  DEBUG ((DEBUG_ERROR, "Build generic HOB\n"));
   BuildGenericHob ();
 
   // Load the DXE Core
+  DEBUG ((DEBUG_ERROR, "zoid: LoadDxeCore\n"));
   Status = LoadDxeCore (&DxeCoreEntryPoint);
   ASSERT_EFI_ERROR (Status);
 
@@ -407,6 +410,7 @@ PayloadEntry (
   IoWrite8 (LEGACY_8259_MASK_REGISTER_SLAVE,  0xFF);
 
   Hob.HandoffInformationTable = HandoffHobTable;
+  DEBUG ((DEBUG_ERROR, "zoid: HandOffToDxeCore\n"));
   HandOffToDxeCore (DxeCoreEntryPoint, Hob);
 
   // Should not get here

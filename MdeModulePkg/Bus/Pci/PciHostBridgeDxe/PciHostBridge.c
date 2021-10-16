@@ -393,10 +393,13 @@ InitializePciHostBridge (
   LIST_ENTRY                  *Link;
   UINT64                      HostAddress;
 
+  DEBUG ((DEBUG_ERROR, "zoid 2: InitializePciHostBridge in MdeModulePkg\n"));
   RootBridges = PciHostBridgeGetRootBridges (&RootBridgeCount);
   if ((RootBridges == NULL) || (RootBridgeCount == 0)) {
+    DEBUG ((DEBUG_ERROR, "zoid 3: No root bridges\n"));
     return EFI_UNSUPPORTED;
   }
+  DEBUG ((DEBUG_ERROR, "zoid 3: %d root bridges\n", RootBridgeCount));
 
   Status = gBS->LocateProtocol (&gEfiCpuIo2ProtocolGuid, NULL, (VOID **) &mCpuIo);
   ASSERT_EFI_ERROR (Status);
@@ -420,8 +423,9 @@ InitializePciHostBridge (
     // Create Root Bridge Handle Instance
     //
     RootBridge = CreateRootBridge (&RootBridges[Index]);
-    ASSERT (RootBridge != NULL);
+    //ASSERT (RootBridge != NULL);
     if (RootBridge == NULL) {
+      DEBUG ((DEBUG_ERROR, "Would assert right now! Because of RootBridge != NULL\n"));
       continue;
     }
 
@@ -431,7 +435,8 @@ InitializePciHostBridge (
     if (Index == 0) {
       ResourceAssigned = RootBridges[Index].ResourceAssigned;
     } else {
-      ASSERT (ResourceAssigned == RootBridges[Index].ResourceAssigned);
+      DEBUG ((DEBUG_ERROR, "Would assert right now! Because of ResourceAssigned == RootBridges[Index].ResourceAssigned\n"));
+      //ASSERT (ResourceAssigned == RootBridges[Index].ResourceAssigned);
     }
 
     if (RootBridges[Index].Io.Base <= RootBridges[Index].Io.Limit) {

@@ -261,6 +261,7 @@ LoadDxeCore (
   EFI_PHYSICAL_ADDRESS        ImageAddress;
   UINT64                      ImageSize;
 
+  DEBUG ((DEBUG_ERROR, "zoid 4: LoadDxeCore\n"));
   PayloadFv = (EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdPayloadFdMemBase);
 
   //
