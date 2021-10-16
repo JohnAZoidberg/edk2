@@ -13,7 +13,7 @@
   PLATFORM_VERSION               = 0.96
   DSC_SPECIFICATION              = 0x00010005
   OUTPUT_DIRECTORY               = Build/SignedCapsulePkg
-  SUPPORTED_ARCHITECTURES        = AARCH64|ARM|IA32|X64
+  SUPPORTED_ARCHITECTURES        = AARCH64|ARM|IA32|X64|RISCV64
   BUILD_TARGETS                  = DEBUG|RELEASE|NOOPT
   SKUID_IDENTIFIER               = DEFAULT
 
@@ -93,6 +93,8 @@
   EdkiiSystemCapsuleLib|SignedCapsulePkg/Library/EdkiiSystemCapsuleLib/EdkiiSystemCapsuleLib.inf
   IniParsingLib|SignedCapsulePkg/Library/IniParsingLib/IniParsingLib.inf
   PlatformFlashAccessLib|SignedCapsulePkg/Library/PlatformFlashAccessLibNull/PlatformFlashAccessLibNull.inf
+
+  RngLib|MdePkg/Library/BaseRngLib/BaseRngLib.inf
 
 [LibraryClasses.ARM]
   ArmSoftFloatLib|ArmPkg/Library/ArmSoftFloatLib/ArmSoftFloatLib.inf

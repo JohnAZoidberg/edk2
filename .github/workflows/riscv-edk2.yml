@@ -1,0 +1,142 @@
+name: Docker
+
+on:
+  # Run CI for this branch and all PRs
+  #push:
+  #  branches:
+  #    - '*-gh-actions'
+  #    - riscv-to-upstream
+  pull_request:
+
+jobs:
+  build-:
+    name: Build packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Pull image
+        run: docker pull ghcr.io/johnazoidberg/riscv-edk2:buster-september2021
+
+      - name: Make build directory to access build results
+        run: mkdir Build
+
+      - name: Build BaseTools
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            make -C BaseTools
+
+      - name: Build MdeModulePkg
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p MdeModulePkg/MdeModulePkg.dsc
+
+      - name: Build MdePkg
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p MdePkg/MdePkg.dsc
+
+      - name: Build CryptoPkg
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p CryptoPkg/CryptoPkg.dsc
+
+      - name: Build ShellPkg
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p ShellPkg/ShellPkg.dsc
+
+      - name: Build NetworkPkg
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p NetworkPkg/NetworkPkg.dsc
+
+      - name: Build EmbeddedPkg
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p EmbeddedPkg/EmbeddedPkg.dsc
+
+      - name: Build SecurityPkg/SecurityPkg.dsc
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p EmbeddedPkg/EmbeddedPkg.dsc
+
+      - name: Build FmpDevicePkg/FmpDevicePkg.dsc
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p FmpDevicePkg/FmpDevicePkg.dsc
+
+      - name: Build FatPkg/FatPkg.dsc
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p FatPkg/FatPkg.dsc
+
+      - name: Build UnitTestFrameworkPkg/UnitTestFrameworkPkg.dsc
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p UnitTestFrameworkPkg/UnitTestFrameworkPkg.dsc
+
+      - name: Build RedfishPkg/RedfishPkg.dsc
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p RedfishPkg/RedfishPkg.dsc
+
+      - name: Build SignedCapsulePkg/SignedCapsulePkg.dsc
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p SignedCapsulePkg/SignedCapsulePkg.dsc
