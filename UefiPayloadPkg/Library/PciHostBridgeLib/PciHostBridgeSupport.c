@@ -106,14 +106,14 @@ AdjustRootBridgeResource (
   @param[in]    Address           PCI address for the BAR.
   @param[out]   OriginalValue     The original bar value returned.
   @param[out]   Value             The probed bar value returned.
-**/
+ **/
 STATIC
-VOID
+  VOID
 PcatPciRootBridgeBarExisted (
-  IN  UINT64                         Address,
-  OUT UINT32                         *OriginalValue,
-  OUT UINT32                         *Value
-)
+    IN  UINT64                         Address,
+    OUT UINT32                         *OriginalValue,
+    OUT UINT32                         *Value
+    )
 {
   UINTN   PciAddress;
 
@@ -163,23 +163,23 @@ PcatPciRootBridgeBarExisted (
   @param[in]  PMem             Prefetchable MMIO aperture.
 
   @param[in]  PMemAbove4G      Prefetchable MMIO aperture above 4G.
-**/
+ **/
 STATIC
 VOID
 PcatPciRootBridgeParseBars (
-  IN UINT16                         Command,
-  IN UINTN                          Bus,
-  IN UINTN                          Device,
-  IN UINTN                          Function,
-  IN UINTN                          BarOffsetBase,
-  IN UINTN                          BarOffsetEnd,
-  IN PCI_ROOT_BRIDGE_APERTURE       *Io,
-  IN PCI_ROOT_BRIDGE_APERTURE       *Mem,
-  IN PCI_ROOT_BRIDGE_APERTURE       *MemAbove4G,
-  IN PCI_ROOT_BRIDGE_APERTURE       *PMem,
-  IN PCI_ROOT_BRIDGE_APERTURE       *PMemAbove4G
+    IN UINT16                         Command,
+    IN UINTN                          Bus,
+    IN UINTN                          Device,
+    IN UINTN                          Function,
+    IN UINTN                          BarOffsetBase,
+    IN UINTN                          BarOffsetEnd,
+    IN PCI_ROOT_BRIDGE_APERTURE       *Io,
+    IN PCI_ROOT_BRIDGE_APERTURE       *Mem,
+    IN PCI_ROOT_BRIDGE_APERTURE       *MemAbove4G,
+    IN PCI_ROOT_BRIDGE_APERTURE       *PMem,
+    IN PCI_ROOT_BRIDGE_APERTURE       *PMemAbove4G
 
-)
+    )
 {
   UINT32                            OriginalValue;
   UINT32                            Value;
@@ -193,16 +193,16 @@ PcatPciRootBridgeParseBars (
   UINT64                            Limit;
   PCI_ROOT_BRIDGE_APERTURE          *MemAperture;
 
-  DEBUG((DEBUG_ERROR, "    zoid: PcatPciRootBridgeParseBars:\n"));
-  DEBUG((DEBUG_ERROR, "      BaseOffsetBase: %ls\n", BarOffsetBase));
-  DEBUG((DEBUG_ERROR, "      BaseOffsetEnd: %ls\n", BarOffsetEnd));
+  DEBUG ((DEBUG_INFO, "ParseBars %x:%x:%x start\n", Bus, Device, Function));
+  DEBUG((DEBUG_ERROR, "      BaseOffsetBase: %lx\n", BarOffsetBase));
+  DEBUG((DEBUG_ERROR, "      BaseOffsetEnd: %lx\n", BarOffsetEnd));
 
   for (Offset = BarOffsetBase; Offset < BarOffsetEnd; Offset += sizeof (UINT32)) {
     PcatPciRootBridgeBarExisted (
-      PCI_LIB_ADDRESS (Bus, Device, Function, Offset),
-      &OriginalValue, &Value
-    );
-    DEBUG((DEBUG_ERROR, "      PcatPciRootBridgeBarExisted: %d\n", Value));
+        PCI_LIB_ADDRESS (Bus, Device, Function, Offset),
+        &OriginalValue, &Value
+        );
+    DEBUG((DEBUG_ERROR, "      PcatPciRootBridgeBarExisted: %lx\n", Value));
     if (Value == 0) {
       continue;
     }
@@ -242,6 +242,7 @@ PcatPciRootBridgeParseBars (
 
         if ((Value & (BIT1 | BIT2)) == 0) {
           DEBUG((DEBUG_ERROR, "        32 Bit\n"));
+          DEBUG ((DEBUG_INFO, "        ParseBars %x:%x:%x 32-bit\n", Bus, Device, Function));
           //
           // 32bit
           //
@@ -256,15 +257,17 @@ PcatPciRootBridgeParseBars (
           }
         } else {
           DEBUG((DEBUG_ERROR, "        64 Bit\n"));
+          DEBUG ((DEBUG_INFO, "        ParseBars %x:%x:%x 64-bit\n", Bus, Device, Function));
+
           //
           // 64bit
           //
           Offset += 4;
           PcatPciRootBridgeBarExisted (
-            PCI_LIB_ADDRESS (Bus, Device, Function, Offset),
-            &OriginalUpperValue,
-            &UpperValue
-          );
+              PCI_LIB_ADDRESS (Bus, Device, Function, Offset),
+              &OriginalUpperValue,
+              &UpperValue
+              );
 
           Base = Base | LShiftU64 ((UINT64) OriginalUpperValue, 32);
           Length = Length | LShiftU64 ((UINT64) UpperValue, 32);
@@ -284,16 +287,31 @@ PcatPciRootBridgeParseBars (
         }
 
         Limit = Base + Length - 1;
-        if ((Base > 0) && (Base < Limit)) {
-          if (MemAperture->Base > Base) {
-            MemAperture->Base = Base;
-            DEBUG((DEBUG_ERROR, "        New biggest MemAperture->Base: From %lx to %lx\n", MemAperture->Base, Base));
+
+        // Check if the value is below 4G
+        if (Base < 0x100000000ULL || Limit < 0x100000000ULL) {
+          if (MemAperture == MemAbove4G) {
+            MemAperture = Mem;
           }
-          if (MemAperture->Limit < Limit) {
-            MemAperture->Limit = Limit;
-            DEBUG((DEBUG_ERROR, "        New biggest MemAperture->Limit: From %lx to %lx\n", MemAperture->Limit, Limit));
+
+          if (MemAperture == PMemAbove4G) {
+            MemAperture = PMem;
           }
         }
+
+        if ((Base > 0) && (Base < Limit)) {
+          if (MemAperture->Base > Base) {
+            DEBUG((DEBUG_ERROR, "        New smallest MemAperture->Base: From %lx to %lx\n", MemAperture->Base, Base));
+            MemAperture->Base = Base;
+          }
+          if (MemAperture->Limit < Limit) {
+            DEBUG((DEBUG_ERROR, "        New biggest MemAperture->Limit: From %lx to %lx\n", MemAperture->Limit, Limit));
+            MemAperture->Limit = Limit;
+          }
+        }
+        DEBUG ((DEBUG_INFO,
+               "New MemAperture Base/Limit: %llx / %llx Above 4G: %d \n", MemAperture->Base,
+               MemAperture->Limit, (MemAperture == MemAbove4G || MemAperture == PMemAbove4G)));
       }
     }
   }
@@ -447,7 +465,7 @@ ScanForRootBridges (
           Limit = (((UINT32) Pci.Bridge.MemoryLimit & 0xfff0) << 16) | 0xfffff;
           if ((Base > 0) && (Base < Limit)) {
             if (Mem.Base > Base) {
-              DEBUG((DEBUG_ERROR, "    zoid: New biggest mem base: From %lx to %lx\n", MemAperture->Base, Base));
+              DEBUG((DEBUG_ERROR, "    zoid: New smallest mem base: From %lx to %lx\n", MemAperture->Base, Base));
               Mem.Base = Base;
             }
             if (Mem.Limit < Limit) {
@@ -482,11 +500,11 @@ ScanForRootBridges (
               MemAperture = &PMemAbove4G;
             }
           } else {
-            DEBUG((DEBUG_ERROR, "    zoid 0.e: Value==%d\n", Value));
+            DEBUG((DEBUG_ERROR, "    zoid 0.e: Value==%lx\n", Value));
           }
           if ((Base > 0) && (Base < Limit)) {
             if (MemAperture->Base > Base) {
-              DEBUG((DEBUG_ERROR, "    zoid: New biggest pmem base: From %lx to %lx\n", MemAperture->Base, Base));
+              DEBUG((DEBUG_ERROR, "    zoid: New smallest pmem base: From %lx to %lx\n", MemAperture->Base, Base));
               MemAperture->Base = Base;
             }
             if (MemAperture->Limit < Limit) {
@@ -607,7 +625,7 @@ ScanForRootBridges (
                     );
       ASSERT (RootBridges != NULL);
 
-      AdjustRootBridgeResource (&Io, &Mem, &MemAbove4G, &PMem, &PMemAbove4G);
+      //AdjustRootBridgeResource (&Io, &Mem, &MemAbove4G, &PMem, &PMemAbove4G);
 
       InitRootBridge (
         Attributes, Attributes, 0,
