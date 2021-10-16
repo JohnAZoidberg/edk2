@@ -131,3 +131,12 @@ jobs:
             -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
             /edk2/build-edk2.sh \
             build -a RISCV64 -t GCC5 -p RedfishPkg/RedfishPkg.dsc
+
+      - name: Build SignedCapsulePkg/SignedCapsulePkg.dsc
+        run: |
+          docker run --rm \
+            -v $(pwd)/Build:/Build \
+            -v $(pwd):/edk2 \
+            -i ghcr.io/johnazoidberg/riscv-edk2:buster-september2021 \
+            /edk2/build-edk2.sh \
+            build -a RISCV64 -t GCC5 -p SignedCapsulePkg/SignedCapsulePkg.dsc
