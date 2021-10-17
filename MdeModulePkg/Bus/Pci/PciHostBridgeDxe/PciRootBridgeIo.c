@@ -158,7 +158,8 @@ CreateRootBridge (
       ASSERT (!RESOURCE_VALID (&Bridge->PMem));
       ASSERT (!RESOURCE_VALID (&Bridge->PMemAbove4G));
       if (RESOURCE_VALID (&Bridge->PMem) || RESOURCE_VALID (&Bridge->PMemAbove4G)) {
-        return NULL;
+        DEBUG ((DEBUG_ERROR, "Would return NULL. Does not support 64 bit memory windows\n"));
+        //return NULL;
       }
     }
 
@@ -170,7 +171,8 @@ CreateRootBridge (
       ASSERT (!RESOURCE_VALID (&Bridge->MemAbove4G));
       ASSERT (!RESOURCE_VALID (&Bridge->PMemAbove4G));
       if (RESOURCE_VALID (&Bridge->MemAbove4G) || RESOURCE_VALID (&Bridge->PMemAbove4G)) {
-        return NULL;
+        DEBUG ((DEBUG_ERROR, "Would return NULL. Does not support 64 bit memory windows\n"));
+        //return NULL;
       }
     }
   }
