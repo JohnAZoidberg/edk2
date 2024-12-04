@@ -353,6 +353,13 @@ INF  MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
 INF  MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
 INF  MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 INF  MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
+#
+# Usb Network Support
+#
+INF  MdeModulePkg/Bus/Usb/UsbNetwork/NetworkCommon/NetworkCommon.inf
+INF  MdeModulePkg/Bus/Usb/UsbNetwork/UsbCdcEcm/UsbCdcEcm.inf
+INF  MdeModulePkg/Bus/Usb/UsbNetwork/UsbCdcNcm/UsbCdcNcm.inf
+INF  MdeModulePkg/Bus/Usb/UsbNetwork/UsbRndis/UsbRndis.inf
 
 INF  OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
 INF  OvmfPkg/QemuRamfbDxe/QemuRamfbDxe.inf

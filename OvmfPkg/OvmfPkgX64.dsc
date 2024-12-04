@@ -959,6 +959,13 @@
   MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
   MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
   MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
+  #
+  # Usb Network Support
+  #
+  MdeModulePkg/Bus/Usb/UsbNetwork/NetworkCommon/NetworkCommon.inf
+  MdeModulePkg/Bus/Usb/UsbNetwork/UsbCdcEcm/UsbCdcEcm.inf
+  MdeModulePkg/Bus/Usb/UsbNetwork/UsbCdcNcm/UsbCdcNcm.inf
+  MdeModulePkg/Bus/Usb/UsbNetwork/UsbRndis/UsbRndis.inf
 
 !include OvmfPkg/Include/Dsc/ShellComponents.dsc.inc
 !include OvmfPkg/Include/Dsc/MorLock.dsc.inc
