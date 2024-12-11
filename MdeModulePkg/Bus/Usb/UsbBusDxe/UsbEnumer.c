@@ -827,8 +827,11 @@ UsbEnumerateNewDev (
   // Select a default configuration: UEFI must set the configuration
   // before the driver can connect to the device.
   //
-  // Quirk for Realtek Ethernet adapter, must select second configuration for CDC NCM
-  if (Child->DevDesc->Desc.IdVendor == 0x0bda && Child->DevDesc->Desc.IdProduct == 0x8156) {
+  // Quirk for Realtek 8156 Ethernet adapter, second config for CDC NCM, third for CDC ECM
+  // Quirk for Realtek 8153 Ethernet adapter, second config for CDC ECM
+  if (Child->DevDesc->Desc.IdVendor == 0x0bda &&
+      (Child->DevDesc->Desc.IdProduct == 0x8153 ||
+      Child->DevDesc->Desc.IdProduct == 0x8156)) {
     Config = Child->DevDesc->Configs[1]->Desc.ConfigurationValue;
   } else {
     Config = Child->DevDesc->Configs[0]->Desc.ConfigurationValue;
