@@ -339,6 +339,12 @@ HttpBootGetBootFileCaller (
             // Try to use HTTP HEAD method again since the Authentication information is provided.
             //
             State = GetBootFileHead;
+          } else if ((Private->RedirectUrl != NULL) && (Status == EFI_MEDIA_CHANGED)) {
+            //
+            // Try to use HTTP HEAD method again since Location header was
+            // provided and we can try the new URL.
+            //
+            State = GetBootFileHead;
           } else {
             State = GetBootFileGet;
           }
@@ -603,6 +609,11 @@ HttpBootStop (
     Private->AuthScheme = NULL;
   }
 
+  if (Private->RedirectUrl != NULL) {
+    FreePool (Private->RedirectUrl);
+    Private->RedirectUrl = NULL;
+  }
+
   if (Private->DnsServerIp != NULL) {
     FreePool (Private->DnsServerIp);
     Private->DnsServerIp = NULL;
@@ -834,7 +845,7 @@ HttpBootCallback (
                            HTTP_HEADER_LOCATION
                            );
             if (HttpHeader != NULL) {
-              Print (L"\n  HTTP ERROR: Resource Redirected.\n  New Location: %a\n", HttpHeader->FieldValue);
+              Print (L"\n  HTTP WARN: Resource Redirected.\n  New Location: %a\n", HttpHeader->FieldValue);
             }
 
             break;

@@ -190,6 +190,11 @@ struct _HTTP_BOOT_PRIVATE_DATA {
   CHAR8                                        *AuthScheme;
 
   //
+  // Data for handling HTTP Location redirect header
+  //
+  CHAR8                                        *RedirectUrl;
+
+  //
   // HII callback info block
   //
   HTTP_BOOT_FORM_CALLBACK_INFO                 CallbackInfo;

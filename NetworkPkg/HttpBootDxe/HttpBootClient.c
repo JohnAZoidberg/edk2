@@ -1195,6 +1195,25 @@ HttpBootGetBootFile (
   }
 
   RequestData->Method = HeaderOnly ? HttpMethodHead : HttpMethodGet;
+  //
+  // Redirected in previous HEAD request, request that URL now
+  //
+  if (Private->RedirectUrl != NULL) {
+    // Deallocate old URL
+    // TODO: Actually we could probably just directly assign to
+    // Private->BootFileUri instead of Private->RedirectUrl
+    FreePool (RequestData->Url);
+
+    UrlSize = AsciiStrSize (Private->RedirectUrl);
+    Url     = AllocatePool (UrlSize * sizeof (CHAR16));
+    if (Url == NULL) {
+      return EFI_OUT_OF_RESOURCES;
+    }
+
+    AsciiStrToUnicodeStrS (Private->RedirectUrl, Url, UrlSize);
+
+  }
+
   RequestData->Url    = Url;
 
   //
@@ -1244,6 +1263,28 @@ HttpBootGetBootFile (
       StatusCode = HttpIo->RspToken.Message->Data.Response->StatusCode;
       HttpBootPrintErrorMessage (StatusCode);
       Status = ResponseData->Status;
+      if (HttpBootIsHttpRedirectStatusCode (StatusCode)) {
+        if (Private->RedirectUrl != NULL) {
+          FreePool (Private->RedirectUrl);
+          Private->RedirectUrl = NULL;
+        }
+
+        HttpHeader = HttpFindHeader (
+                       ResponseData->HeaderCount,
+                       ResponseData->Headers,
+                       HTTP_HEADER_LOCATION
+                       );
+        if (HttpHeader != NULL) {
+          Private->RedirectUrl = AllocateZeroPool (AsciiStrLen (HttpHeader->FieldValue) + 1);
+          if (Private->RedirectUrl == NULL) {
+            return EFI_OUT_OF_RESOURCES;
+          }
+
+          CopyMem (Private->RedirectUrl, HttpHeader->FieldValue, AsciiStrLen (HttpHeader->FieldValue));
+        }
+
+        Status = EFI_MEDIA_CHANGED;
+      }
       if ((StatusCode == HTTP_STATUS_401_UNAUTHORIZED) || \
           (StatusCode == HTTP_STATUS_407_PROXY_AUTHENTICATION_REQUIRED))
       {
